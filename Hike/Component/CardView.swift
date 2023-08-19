@@ -35,7 +35,7 @@ struct CardView: View {
                         Text("Hiking")
                             .fontWeight(.black)
                             .font(.system(size: 40))
-                            .foregroundStyle(LinearGradient(colors: [.pink,.purple], startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .foregroundStyle(LinearGradient(colors: [.customGreenMedium,.customGrayMedium], startPoint: .top, endPoint: .bottom))
                         
                         Spacer()
                         Button{

@@ -12,7 +12,7 @@ struct CustomButtonView: View {
         ZStack{
             Circle().fill(LinearGradient(colors: [.white,.customGreenLight,.customGreenMedium], startPoint: .top, endPoint: .bottom))
             
-            Circle().stroke(LinearGradient(colors: [.customSalmonLight,.customIndigoMedium], startPoint: .topLeading, endPoint: .bottomTrailing),lineWidth: 4)
+            Circle().stroke(LinearGradient(colors: [.customGreenLight,.customGrayMedium], startPoint: .topLeading, endPoint: .bottomTrailing),lineWidth: 4)
             
             Image(systemName: "figure.hiking")
                 .fontWeight(.black)

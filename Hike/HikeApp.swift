@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main //serap<3
+@main
 struct HikeApp: App {
     var body: some Scene {
         WindowGroup {

@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct SettingsView: View {
+//    MARK: PROPERTIES
+    
+    private let alternativeAppIcons: [String] = [
+    "AppIcon-MagnifyingGlass",
+    "AppIcon-Map",
+    "AppIcon-Mushroom",
+    "AppIcon-Camera",
+    "AppIcon-Backpack",
+    "AppIcon-Campfire"
+    ]
+    
     var body: some View {
         List{
             //MARK: - SECTION: HEADER
@@ -53,16 +64,72 @@ struct SettingsView: View {
             }.listRowSeparator(.hidden)
                 //MARK: - SECTION: ICONS
                 
+            Section(header: Text("Alternate Icons")){
+                ScrollView(.horizontal,showsIndicators: false){
+                    HStack (spacing: 12) {
+                        ForEach(alternativeAppIcons.indices,id: \.self) { item in
+                            Button{
+                                UIApplication.shared.setAlternateIconName(alternativeAppIcons[item]){
+                                    error in
+                                    if error != nil{
+                                        print("Failed request to update to app's icon: \(String(describing: error?.localizedDescription))")
+                                    }else{
+                                        print("Success. You have changed the app's icon to \(alternativeAppIcons[item])")
+                                    }
+                                }
+                            }label: {
+                                Image("\(alternativeAppIcons[item])-Preview")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80,height: 80)
+                                    .cornerRadius(16)
+                            }
+                        .buttonStyle(.borderless)
+                        }
+                    }
+                }//:SCROLVIEW
+                .padding(.top,12)
+                
+                
+                Text("Choose your favorite application icon from the collection above.")
+                    .frame(minWidth: 0,maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                    .font(.footnote)
+                    .padding(.bottom,12)
+            }//: SECTION
+            .listRowSeparator(.hidden)
+            
                 //MARK: - SECTION: ABOUT
 //              test denemesi burası bilgine
                 
                 Section(
                     header: Text("ABOUT THE APP"),
                     footer: HStack{
+                        Spacer()
                         Text("CopyRight ® All right deserved by Adem Koçdoğan.")
+                            .multilineTextAlignment(.center)
+                        Spacer()
                     }
+                        .padding(.vertical,8)
                 ){
-                    Text("List Row")
+//                    1. Basic Labeled Content
+//                    LabeledContent("Application",value:"Hike")
+                    
+//                    2. Advanced Labeled Content
+                    CustomListRowView(rowLabel: "Application", rowIcon: "apps.iphone", rowContent: "Hike", rowTintColor: .blue)
+                    
+                    CustomListRowView(rowLabel: "Compatibility", rowIcon: "info.circle", rowContent: "iOS, iPadOS", rowTintColor: .red)
+                    
+                    CustomListRowView(rowLabel: "Technology", rowIcon: "swift", rowContent: "Swift", rowTintColor: .orange)
+                    
+                    CustomListRowView(rowLabel: "Version", rowIcon: "gear", rowContent: "1.0", rowTintColor: .purple)
+                    
+                    CustomListRowView(rowLabel: "Developer", rowIcon: "ellipsis.curlybraces", rowContent: "Adem Koçdoğan", rowTintColor: .mint)
+                    
+                    CustomListRowView(rowLabel: "Designer", rowIcon: "paintpalette", rowContent: "Adem Koçdoğan", rowTintColor: .pink)
+                    
+                    CustomListRowView(rowLabel: "Website", rowIcon: "globe", rowTintColor: .indigo,rowLinkLabel:"Adem Software",rowLinkDestination: "https://github.com/admkcdn")
                 }//:SECTION
             
             .listRowSeparator(.hidden)
