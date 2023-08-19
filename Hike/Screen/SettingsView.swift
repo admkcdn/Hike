@@ -54,7 +54,7 @@ struct SettingsView: View {
                 //MARK: - SECTION: ICONS
                 
                 //MARK: - SECTION: ABOUT
-//                
+//              test denemesi burası bilgine
                 
                 Section(
                     header: Text("ABOUT THE APP"),
